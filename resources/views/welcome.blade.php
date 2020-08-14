@@ -24,6 +24,29 @@
                 height: 100vh;
             }
 
+            .banner {
+                position: relative;
+                z-index: 5;
+                height: 300px;
+                width: full;
+                color: #000;
+                font-size: 400%;
+                padding: 20px;
+            }
+
+            .banner .bg {
+                position: absolute;
+                z-index: -1;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: url(https://www.lecontemedicalcenter.com/wp-content/uploads/sites/2/2018/08/Untitled-design-9.png) center center;
+                opacity: .4;
+                    width: 100%;
+                    height: 100%;
+            }
+
             .flex-center {
                 align-items: center;
                 display: flex;
@@ -45,7 +68,7 @@
             }
 
             .title {
-                font-size: 84px;
+                font-size: 88px;
             }
 
             .links > a {
@@ -59,12 +82,15 @@
             }
 
             .m-b-md {
-                margin-bottom: 30px;
+                margin-bottom: 100px;
             }
         </style>
     </head>
     <body>
+        <div class="banner">
         <div class="flex-center position-ref full-height">
+                <div class="bg"></div>            
+            
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -81,20 +107,15 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Shinier App
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="https://shinier.com.br/">Shinier</a>
+                    <a href="https://github.com/alysson-oliveira/Shinier-Challenge">GitHub</a>
                 </div>
             </div>
+        </div>
         </div>
     </body>
 </html>
