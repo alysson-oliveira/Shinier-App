@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Session;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserResource extends JsonResource
@@ -23,5 +24,9 @@ class UserResource extends JsonResource
                 'open' => false
             ]
         ];
+    }
+    private function awaaion_details($id){
+        $session = Session::whereIn('user1_id',[auth()->id(),$id])->whereIn('user2_id',[auth()->id(),$id])->first();
+        return $session;
     }
 }

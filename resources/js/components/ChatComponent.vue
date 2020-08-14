@@ -31,11 +31,13 @@
             </div>
             <div class="col-md-9" v-else>
                 <span v-for="friend in friends" :key="friend.id">
-                    <message-component
-                        v-if="friend.session.open"
-                        @close="close(friend)"
-                        :friend=friend
-                    ></message-component>
+                    <div v-if='friend.session' :friend=friend>
+                        <message-component
+                            v-if="friend.session.open"
+                            @close="close(friend)"
+                            :friend=friend
+                        ></message-component>
+                    </div>
                 </span>
             </div>
         </div>
@@ -61,16 +63,23 @@
                     .then(res => this.friends = res.data.data);
             },
             openChat(friend){
+                if(friend.session){
                     this.friends.forEach(friend => {
                         friend.session.open=false;
                     });
                     this.search=false;
                     friend.session.open = true;
+                }else{
+                    this.createSession(friend);
+                }
             },
             openSearch(){
                 this.search=true;
+            },
+            createSession(friend){
+            axios.post('/session/create', {friend_id:friend.id}).then(res => (friend.session = res.data));
             }
-        },
+        },        
 
         created(){
             this.getFriends();
