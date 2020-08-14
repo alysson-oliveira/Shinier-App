@@ -1,9 +1,15 @@
 ## Running the application
+- npm install
+- php artisan migrate
 - php artisan db:seed
 - php artisan serve
 And in another console
 - npm run watch
 Go to <a href="http://127.0.0.1:8000/">127.0.0.1:8000</a>
+Then, use one of the following users to login:
+- login: michaelscott@gmail.com     password: password
+- login: tobyflenderson@gmail.com   password: password
+- login: dwightschrute@gmail.com    password: password
 
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
