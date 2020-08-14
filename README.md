@@ -8,8 +8,8 @@ And in another console
 Go to <a href="http://127.0.0.1:8000/">127.0.0.1:8000</a>
 Then, use one of the following users to login:
 - <p>login: michaelscott@gmail.com     password: password</p>
-- login: tobyflenderson@gmail.com   password: password
-- login: dwightschrute@gmail.com    password: password
+- <p>login: tobyflenderson@gmail.com   password: password</p>
+- <p>login: dwightschrute@gmail.com    password: password</p>
 
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
