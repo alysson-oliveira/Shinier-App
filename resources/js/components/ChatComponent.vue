@@ -26,7 +26,7 @@
             </div>
             <div class="col-md-9" v-if="search">
                 <search-component
-                    
+                    @closeSearch="closeSearch()"
                 ></search-component>
             </div>
             <div class="col-md-9" v-else>
@@ -76,8 +76,11 @@
             openSearch(){
                 this.search=true;
             },
+            closeSearch(){
+                this.search=false;
+            },
             createSession(friend){
-            axios.post('/session/create', {friend_id:friend.id}).then(res => (friend.session = res.data));
+                axios.post('/session/create', {friend_id:friend.id}).then(res => (friend.session = res.data));
             }
         },        
 

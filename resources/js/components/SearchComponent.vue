@@ -50,7 +50,7 @@
                 console.log(document.getElementById('searchMade').value);
             },
             close(){
-                this.$emit('close');
+                this.$emit('closeSearch');
             },
             clear(){
                 this.searchs = [];

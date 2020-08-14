@@ -1990,6 +1990,9 @@ __webpack_require__.r(__webpack_exports__);
     openSearch: function openSearch() {
       this.search = true;
     },
+    closeSearch: function closeSearch() {
+      this.search = false;
+    },
     createSession: function createSession(friend) {
       axios.post('/session/create', {
         friend_id: friend.id
@@ -2159,7 +2162,7 @@ __webpack_require__.r(__webpack_exports__);
       console.log(document.getElementById('searchMade').value);
     },
     close: function close() {
-      this.$emit('close');
+      this.$emit('closeSearch');
     },
     clear: function clear() {
       this.searchs = [];
@@ -44667,7 +44670,20 @@ var render = function() {
       ]),
       _vm._v(" "),
       _vm.search
-        ? _c("div", { staticClass: "col-md-9" }, [_c("search-component")], 1)
+        ? _c(
+            "div",
+            { staticClass: "col-md-9" },
+            [
+              _c("search-component", {
+                on: {
+                  closeSearch: function($event) {
+                    return _vm.closeSearch()
+                  }
+                }
+              })
+            ],
+            1
+          )
         : _c(
             "div",
             { staticClass: "col-md-9" },
@@ -57245,10 +57261,10 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
-  key: "",
-  // key: "0bacda019d528fbc4f3d",
-  cluster: "mt1",
-  // cluster: "us2",
+  // key: process.env.MIX_PUSHER_APP_KEY,
+  key: "0bacda019d528fbc4f3d",
+  // cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+  cluster: "us2",
   forceTLS: true
 });
 
