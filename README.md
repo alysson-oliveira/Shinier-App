@@ -3,7 +3,7 @@
 - php artisan migrate
 - php artisan db:seed
 - php artisan serve
-<p>And in another console</p>
+
 - npm run watch
 Go to <a href="http://127.0.0.1:8000/">127.0.0.1:8000</a>
 Then, use one of the following users to login:
