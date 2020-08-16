@@ -3,10 +3,10 @@
 - php artisan migrate
 - php artisan db:seed
 - php artisan serve
-
+- Open another console and:
 - npm run watch
-Go to <a href="http://127.0.0.1:8000/">127.0.0.1:8000</a>
-Then, use one of the following users to login:
+- Go to <a href="http://127.0.0.1:8000/">127.0.0.1:8000</a>
+- Then, use one of the following users to login:
 - <p>login: michaelscott@gmail.com     password: password</p>
 - <p>login: tobyflenderson@gmail.com   password: password</p>
 - <p>login: dwightschrute@gmail.com    password: password</p>
