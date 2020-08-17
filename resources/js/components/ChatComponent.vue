@@ -1,4 +1,5 @@
 <template>
+<div class="banner">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-3">
@@ -26,7 +27,7 @@
             </div>
             <div class="col-md-9" v-if="search">
                 <search-component
-                    
+                    @closeSearch="closeSearch()"
                 ></search-component>
             </div>
             <div class="col-md-9" v-else>
@@ -42,6 +43,7 @@
             </div>
         </div>
     </div>
+</div>
 </template>
 
 <script>
@@ -76,8 +78,11 @@
             openSearch(){
                 this.search=true;
             },
+            closeSearch(){
+                this.search=false;
+            },
             createSession(friend){
-            axios.post('/session/create', {friend_id:friend.id}).then(res => (friend.session = res.data));
+                axios.post('/session/create', {friend_id:friend.id}).then(res => (friend.session = res.data));
             }
         },        
 
@@ -88,3 +93,16 @@
         
     }
 </script>
+<style>
+    .banner{
+        position: absolute;
+        z-index: -1;
+        left: 0;
+        right: 0;
+        background: url(https://previews.123rf.com/images/jk1991/jk19911506/jk1991150600083/40835566-the-pharmacy-medicine-medical-on-white-background-for-decorate-and-design-project-.jpg) center center;
+        background-size: 100%;
+        opacity: 1;
+            width: 100%;
+            height: 100%;
+    }
+</style>
