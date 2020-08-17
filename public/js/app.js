@@ -2161,11 +2161,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       searchs: [],
-      search: false
+      medicines: [],
+      searchMessage: '',
+      search: false,
+      cart: [],
+      cartHasItens: false
     };
   },
   methods: {
@@ -2178,13 +2209,56 @@ __webpack_require__.r(__webpack_exports__);
       this.$emit('closeSearch');
     },
     clear: function clear() {
-      this.searchs = [];
+      this.searchMessage = [];
+    },
+    addToCart: function addToCart(medicine) {
+      this.cart.push({
+        name: medicine
+      });
+      this.cartHasItens = true;
+      console.log(this.cart);
+    },
+    removeFromCart: function removeFromCart(index) {
+      console.log(index);
+      this.cart.splice(index, 1);
+    },
+    clearCart: function clearCart() {
+      this.cart = [];
+      this.cartHasItens = false;
     }
   },
   created: function created() {
-    this.searchs.push({
-      message: 'Type your search'
+    this.medicines.push({
+      name: 'Dorflex'
+    }, {
+      name: 'Xarelto'
+    }, {
+      name: 'Selozok'
+    }, {
+      name: 'Neosaldina'
+    }, {
+      name: 'Torsilax'
+    }, {
+      name: 'Aradois'
+    }, {
+      name: 'Glifage XR'
+    }, {
+      name: 'Addera D3'
+    }, {
+      name: 'Anthelios'
+    }, {
+      name: 'Buscopan composto'
     });
+  },
+  computed: {
+    filteredMedicines: function filteredMedicines() {
+      var _this = this;
+
+      return this.medicines.filter(function (medicine) {
+        console.log(_this.searchMessage);
+        return medicine.name.toLowerCase().match(_this.searchMessage.toLowerCase());
+      });
+    }
   }
 });
 
@@ -6660,7 +6734,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.chat-box{\n    height: 400px;\n}\n.card-body{\n    overflow-y: scroll;\n}\n", ""]);
+exports.push([module.i, "\n.chat-box{\n    height: 400px;\n}\n.card-body{\n    overflow-y: scroll;\n}\n.cart-card-body{\n    padding: 20px;\n    height: 200px;\n    overflow-y: scroll;\n}\n", ""]);
 
 // exports
 
@@ -44983,107 +45057,220 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card chat-box" }, [
-    _c("div", { staticClass: "card-header" }, [
-      _c("b", [_vm._v("Search")]),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          attrs: { href: "" },
-          on: {
-            click: function($event) {
-              $event.preventDefault()
-              return _vm.close($event)
-            }
-          }
-        },
-        [_c("i", { staticClass: "fas fa-times float-right" })]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "dropdown float-right mr-4" }, [
-        _vm._m(0),
+  return _c("div", [
+    _c("div", { staticClass: "card chat-box" }, [
+      _c("div", { staticClass: "card-header" }, [
+        _c("b", [
+          _vm._v("Search (Click on a product to add it to your cart!)")
+        ]),
         _vm._v(" "),
         _c(
-          "div",
+          "a",
           {
-            staticClass: "dropdown-menu",
-            attrs: { "aria-labelledby": "dropdownMenuButton" }
+            attrs: { href: "" },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.close($event)
+              }
+            }
           },
-          [
+          [_c("i", { staticClass: "fas fa-times float-right" })]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "dropdown float-right mr-4" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "dropdown-menu",
+              attrs: { "aria-labelledby": "dropdownMenuButton" }
+            },
+            [
+              _c(
+                "a",
+                {
+                  staticClass: "dropdown-item",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.clear($event)
+                    }
+                  }
+                },
+                [_vm._v("Limpar Pesquisa")]
+              )
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          directives: [{ name: "chat-scroll", rawName: "v-chat-scroll" }],
+          staticClass: "card-body"
+        },
+        _vm._l(_vm.filteredMedicines, function(remedy) {
+          return _c("p", { key: remedy.name, staticClass: "card-text" }, [
             _c(
               "a",
               {
-                staticClass: "dropdown-item",
-                attrs: { href: "#" },
+                attrs: { href: "" },
                 on: {
                   click: function($event) {
                     $event.preventDefault()
-                    return _vm.clear($event)
+                    return _vm.addToCart(remedy.name)
                   }
                 }
               },
-              [_vm._v("Limpar Pesquisa")]
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(remedy.name) +
+                    "\n                "
+                )
+              ]
             )
-          ]
-        )
-      ])
+          ])
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          staticClass: "card-footer",
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.send(_vm.searchMessage)
+            }
+          }
+        },
+        [
+          _c("div", { staticClass: "form-group" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.searchMessage,
+                  expression: "searchMessage"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                placeholder: "Write your search",
+                id: "searchMade"
+              },
+              domProps: { value: _vm.searchMessage },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.searchMessage = $event.target.value
+                }
+              }
+            })
+          ])
+        ]
+      )
     ]),
     _vm._v(" "),
-    _c(
-      "div",
-      {
-        directives: [{ name: "chat-scroll", rawName: "v-chat-scroll" }],
-        staticClass: "card-body"
-      },
-      _vm._l(_vm.searchs, function(search) {
-        return _c("p", { key: search.message, staticClass: "card-text" }, [
-          _vm._v("\n            " + _vm._s(search.message) + "\n        ")
+    _vm.cartHasItens
+      ? _c("div", { staticClass: "card cart-chat-box" }, [
+          _c("div", { staticClass: "card-header" }, [
+            _c("b", [
+              _vm._v("Cart (Click on a product to remove it from your cart!)")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "dropdown float-right" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "dropdown-menu",
+                  attrs: { "aria-labelledby": "dropdownMenuButton" }
+                },
+                [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "dropdown-item",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.clearCart($event)
+                        }
+                      }
+                    },
+                    [_vm._v("Limpar Carrinho")]
+                  )
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              directives: [{ name: "chat-scroll", rawName: "v-chat-scroll" }],
+              staticClass: "card cart-card-body"
+            },
+            _vm._l(_vm.cart, function(itens, index) {
+              return _c("p", { key: itens.name, staticClass: "card-text" }, [
+                _c(
+                  "a",
+                  {
+                    attrs: { href: "" },
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.removeFromCart(index)
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(itens.name) +
+                        "\n                "
+                    )
+                  ]
+                )
+              ])
+            }),
+            0
+          )
         ])
-      }),
-      0
-    ),
-    _vm._v(" "),
-    _c(
-      "form",
-      {
-        staticClass: "card-footer",
-        on: {
-          submit: function($event) {
-            $event.preventDefault()
-            return _vm.send(_vm.searchMessage)
-          }
-        }
-      },
-      [
-        _c("div", { staticClass: "form-group" }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.searchMessage,
-                expression: "searchMessage"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { placeholder: "Write your message", id: "searchMade" },
-            domProps: { value: _vm.searchMessage },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.searchMessage = $event.target.value
-              }
-            }
-          })
-        ])
-      ]
-    )
+      : _vm._e()
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        attrs: {
+          href: "",
+          "data-toggle": "dropdown",
+          "aria-haspopup": "true",
+          "aria-expanded": "false"
+        }
+      },
+      [_c("i", { staticClass: "fas fa-ellipsis-v" })]
+    )
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
