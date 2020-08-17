@@ -34,9 +34,9 @@
                 {{chat.message}}
             </p>
         </div>
-        <form class="card-footer" @submit.prevent="send">
+        <form class="card-footer" @submit.prevent="send(message)">
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Write your message"
+                <input v-model="message" class="form-control" placeholder="Write your message"
                 :disabled="session_block">
             </div>
         </form>
@@ -53,9 +53,15 @@ export default {
         }
     },
     methods: {
-        send(){
-            console.log('message sent');
+        send(message){
+            this.chats.push({
+                message: 'Você: ' + message
+            });
         },
+        getFriends(){
+                axios.get('/user')
+                    .then(res => this.friends = res.data.data);
+            },
         close(){
             this.$emit('close');
         },
@@ -71,8 +77,8 @@ export default {
     },
     created(){
         this.chats.push(
-            {message:'Heyy'},
-            {message:'How are you'}
+            {message:this.friend.name + ': Hey'},
+            {message:this.friend.name + ': How are you?'}
         );
     }
 }
@@ -81,6 +87,8 @@ export default {
 <style>
     .chat-box{
         height: 400px;
+        /* background: url(https://image.freepik.com/free-photo/pile-white-round-oblong-shape-tablet-pills-isolated_33867-1293.jpg) center center;
+        background-size: 100%; */
     }
     .card-body{
         overflow-y: scroll;

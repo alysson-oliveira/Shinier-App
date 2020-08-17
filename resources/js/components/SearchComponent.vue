@@ -28,9 +28,9 @@
                 {{search.message}}
             </p>
         </div>
-        <form class="card-footer" @submit.prevent="send">
+        <form class="card-footer" @submit.prevent="send(searchMessage)">
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Write your message" id="searchMade">
+                <input v-model="searchMessage" class="form-control" placeholder="Write your message" id="searchMade">
             </div>
         </form>
 
@@ -46,9 +46,11 @@
             }
         },
         methods: {
-            send(){
-                console.log(document.getElementById('searchMade').value);
-            },
+            send(message){
+            this.searchs.push({
+                message: 'Você: ' + message
+            });
+        },
             close(){
                 this.$emit('closeSearch');
             },

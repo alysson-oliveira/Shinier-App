@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Shinier App</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -31,7 +31,7 @@
                 width: full;
                 color: #000;
                 font-size: 400%;
-                padding: 20px;
+                padding: 0px;
             }
 
             .banner .bg {
@@ -42,7 +42,7 @@
                 left: 0;
                 right: 0;
                 background: url(https://www.lecontemedicalcenter.com/wp-content/uploads/sites/2/2018/08/Untitled-design-9.png) center center;
-                opacity: .4;
+                opacity: .5;
                     width: 100%;
                     height: 100%;
             }
@@ -88,34 +88,33 @@
     </head>
     <body>
         <div class="banner">
-        <div class="flex-center position-ref full-height">
-                <div class="bg"></div>            
-            
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
+            <div class="flex-center position-ref full-height">
+                    <div class="bg"></div>            
+                
+                @if (Route::has('login'))
+                    <div class="top-right links" style="text-shadow: 0.8px 0.8px 0.8px rgba(0,0,0,0.4)">
+                        @auth
+                            <a href="{{ url('/home') }}">Home</a>
+                        @else
+                            <a href="{{ route('login') }}">Login</a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}">Register</a>
+                            @endif
+                        @endauth
+                    </div>
+                @endif
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Shinier App
-                </div>
-
-                <div class="links">
-                    <a href="https://shinier.com.br/">Shinier</a>
-                    <a href="https://github.com/alysson-oliveira/Shinier-Challenge">GitHub</a>
+                <div class="content">
+                    <div class="title m-b-md" style="text-shadow: 1.5px 1.5px 1px rgba(0,0,0,0.4)">
+                        Shinier App
+                    </div>
+                    <div class="links" style="text-shadow: 0.8px 0.8px 1px rgba(0,0,0,0.4)">
+                        <a href="https://shinier.com.br/">Shinier</a>
+                        <a href="https://github.com/alysson-oliveira/Shinier-App">GitHub</a>
+                    </div>
                 </div>
             </div>
-        </div>
         </div>
     </body>
 </html>
